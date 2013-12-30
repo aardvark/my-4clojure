@@ -135,3 +135,15 @@
                        (< x y ))))
                   coll))
    ) [1 :a 2 :b 3 :c])
+#(vals (group-by type %))
+(group-by type [1 :a 2 :b 3 :c]) ;;=> {java.lang.Long [1 2 3], clojure.lang.Keyword [:a :b :c]}
+;;53
+;;longest increasing sub-seq
+((fn []) [1 0 1 2 3 0 4 5])
+;; function must take one element and check if it is greater than previous one
+(fn [x]
+  [x start-x]
+  (> x start-x))
+(map #(< %1 %2 %3) [1 0 1 2 3 0 4 5] [0 1 2 3 0 4 5] [1 2 3 0 4 5]) ;;=> (false false false false false false)
+;; function take first element of collection and return list of comparator elms
+(partition-by #(< (first %) (second %)) (partition 2 1 [1 0 1 2 3 0 4 5]))
