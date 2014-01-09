@@ -146,4 +146,14 @@
   (> x start-x))
 (map #(< %1 %2 %3) [1 0 1 2 3 0 4 5] [0 1 2 3 0 4 5] [1 2 3 0 4 5]) ;;=> (false false false false false false)
 ;; function take first element of collection and return list of comparator elms
-(partition-by #(< (first %) (second %)) (partition 2 1 [1 0 1 2 3 0 4 5]))
+(partition-by #(< (first %) (second %)) (partition 2 1 [1 0 1 2 3 0 4 5])) ;;=> (((1 0)) ((0 1) (1 2) (2 3)) ((3 0)) ((0 4) (4 5)))
+
+(first
+ (sort
+  #(compare (count %2) (count %1))
+  (partition-by
+   #(< (first %) (second %))
+   (partition 2 1 [1 0 1 2 3 0 4 5])))) ;;=> ((0 1) (1 2) (2 3))
+(fn merge-with-drop [coll]
+  (let [x & y coll])
+  )
